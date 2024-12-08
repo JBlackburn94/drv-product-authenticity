@@ -92,8 +92,8 @@ export default function Home() {
             authenticity of your product by entering a unique code provided with
             your purchase. If the code is valid, we will increment the count
             each time the code is checked. This feature ensures that the product
-            you're purchasing is genuine and gives you the peace of mind that
-            you're buying a verified product.
+            you&apos;re purchasing is genuine and gives you the peace of mind
+            that you&apos;re buying a verified product.
           </p>
           <div className="mt-6">
             <h3 className="text-lg font-semibold">Where to find your code?</h3>
