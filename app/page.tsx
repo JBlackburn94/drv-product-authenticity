@@ -44,12 +44,6 @@ export default function Home() {
   return (
     <main className="flex flex-col md:flex-row gap-8 h-screen w-full p-8 border border-green">
       <div className="flex-1 bg-white p-6 rounded-lg shadow-lg">
-        <Link
-          href="https://dr-vapes.com/"
-          className="font-semibold underline text-red-500"
-        >
-          Return to Shopify
-        </Link>
         <h1 className="text-3xl font-black my-6">Product Authenticator</h1>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
