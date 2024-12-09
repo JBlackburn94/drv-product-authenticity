@@ -3,6 +3,7 @@ import { useState } from "react";
 import supabase from "../lib/supabase";
 import Image from "next/image";
 import drvLogo from "../public/DRV-Logo.webp";
+import Link from "next/link";
 
 export default function Home() {
   const [code, setCode] = useState("");
@@ -20,7 +21,9 @@ export default function Home() {
       .single();
 
     if (error || !data) {
-      setResponseMessage("Code not found!");
+      setResponseMessage(
+        "You have entered an incorrect code. Please contact us via live chat or at support@dr-vapes.com with multiple images of the product, for manual verification."
+      );
       return;
     }
 
@@ -41,7 +44,13 @@ export default function Home() {
   return (
     <main className="flex flex-col md:flex-row gap-8 h-screen w-full p-8 border border-green">
       <div className="flex-1 bg-white p-6 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-black mb-6">Product Authenticator</h1>
+        <Link
+          href="https://dr-vapes.com/"
+          className="font-semibold underline text-red-500"
+        >
+          Return to Shopify
+        </Link>
+        <h1 className="text-3xl font-black my-6">Product Authenticator</h1>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label htmlFor="auth-code" className="block font-medium">
@@ -68,7 +77,9 @@ export default function Home() {
         {responseMessage && (
           <p
             className={`mt-4 text-center ${
-              responseMessage.includes("Code not found")
+              responseMessage.includes(
+                "You have entered an incorrect code. Please contact us via live chat or at support@dr-vapes.com with multiple images of the product, for manual verification."
+              )
                 ? "text-red-500"
                 : "text-green-500"
             }`}
