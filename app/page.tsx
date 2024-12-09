@@ -3,7 +3,6 @@ import { useState } from "react";
 import supabase from "../lib/supabase";
 import Image from "next/image";
 import drvLogo from "../public/DRV-Logo.webp";
-import Link from "next/link";
 
 export default function Home() {
   const [code, setCode] = useState("");
