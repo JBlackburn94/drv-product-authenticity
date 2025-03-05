@@ -44,7 +44,15 @@ export default function Home() {
     <main className="flex flex-col md:flex-row gap-8 h-screen w-full p-8 border border-green">
       <div className="flex-1 bg-white p-6 rounded-lg shadow-lg">
         <h1 className="text-3xl font-black my-6">Product Authenticator</h1>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <p className="text-red-500 text-xl">
+          Please note, due to a technical error our Authentication system is
+          currently down please email info@dr-vapes.com or message us on
+          WhatsApp on +44 7916 606337.
+        </p>
+        <p className="text-red-500 text-xl mt-10">
+          We are working to fix this issue as soon as possible.
+        </p>
+        {/* <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label htmlFor="auth-code" className="block font-medium">
               Enter your code
@@ -66,7 +74,7 @@ export default function Home() {
           >
             Check Code
           </button>
-        </form>
+        </form> */}
         {responseMessage && (
           <p
             className={`mt-4 text-center ${
