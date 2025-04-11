@@ -1,58 +1,50 @@
 "use client";
-// import { useState } from "react";
-// import supabase from "../lib/supabase";
+import { useState } from "react";
+import supabase from "../lib/supabase";
 import Image from "next/image";
 import drvLogo from "../public/DRV-Logo.webp";
 
 export default function Home() {
-  // const [code, setCode] = useState("");
-  // const [responseMessage, setResponseMessage] = useState("");
-  // const [inputCount, setInputCount] = useState(null);
+  const [code, setCode] = useState("");
+  const [responseMessage, setResponseMessage] = useState("");
+  const [inputCount, setInputCount] = useState(null);
 
-  // const handleSubmit = async (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   setResponseMessage("");
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setResponseMessage("");
 
-  //   const { data, error } = await supabase
-  //     .from("authenticity_codes")
-  //     .select("id, code, input_count")
-  //     .eq("code", code)
-  //     .single();
+    const { data, error } = await supabase
+      .from("authenticity_codes")
+      .select("id, code, input_count")
+      .eq("code", code)
+      .single();
 
-  //   if (error || !data) {
-  //     setResponseMessage(
-  //       "You have entered an incorrect code. Please contact us via live chat or at support@dr-vapes.com with multiple images of the product, for manual verification."
-  //     );
-  //     return;
-  //   }
+    if (error || !data) {
+      setResponseMessage(
+        "You have entered an incorrect code. Please contact us via live chat or at support@dr-vapes.com with multiple images of the product, for manual verification."
+      );
+      return;
+    }
 
-  //   const { error: updateError } = await supabase
-  //     .from("authenticity_codes ")
-  //     .update({ input_count: data.input_count + 1 })
-  //     .eq("id", data.id);
+    const { error: updateError } = await supabase
+      .from("authenticity_codes ")
+      .update({ input_count: data.input_count + 1 })
+      .eq("id", data.id);
 
-  //   if (updateError) {
-  //     setResponseMessage("Something went wrong whilst updating.");
-  //     return;
-  //   }
+    if (updateError) {
+      setResponseMessage("Something went wrong whilst updating.");
+      return;
+    }
 
-  //   setInputCount(data.input_count + 1);
-  //   setResponseMessage("Code is valid 🎉!");
-  // };
+    setInputCount(data.input_count + 1);
+    setResponseMessage("Code is valid 🎉!");
+  };
 
   return (
     <main className="flex flex-col md:flex-row gap-8 h-screen w-full p-8 border border-green">
       <div className="flex-1 bg-white p-6 rounded-lg shadow-lg">
         <h1 className="text-3xl font-black my-6">Product Authenticator</h1>
-        <p className="text-red-500 text-xl">
-          Please note, due to a technical error our Authentication system is
-          currently down please email info@dr-vapes.com or message us on
-          WhatsApp on +44 7916 606337.
-        </p>
-        <p className="text-red-500 text-xl mt-10">
-          We are working to fix this issue as soon as possible.
-        </p>
-        {/* <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label htmlFor="auth-code" className="block font-medium">
               Enter your code
@@ -74,8 +66,8 @@ export default function Home() {
           >
             Check Code
           </button>
-        </form> */}
-        {/* {responseMessage && (
+        </form>
+        {responseMessage && (
           <p
             className={`mt-4 text-center ${
               responseMessage.includes(
@@ -93,7 +85,7 @@ export default function Home() {
             Code has been entered <strong>{inputCount}</strong>{" "}
             {inputCount === 1 ? "time" : "times"}.
           </p>
-        )} */}
+        )}
       </div>
       <div className="flex-1">
         <Image src={drvLogo} alt="Dr Vapes logo." priority />
