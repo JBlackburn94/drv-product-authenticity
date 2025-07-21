@@ -36,8 +36,15 @@ export default function Home() {
       return;
     }
 
-    setInputCount(data.input_count + 1);
-    setResponseMessage("Code is valid 🎉!");
+    if (data.input_count > 0) {
+      setResponseMessage(
+        "⚠️ Product Code Already Used 🚫 This product code has already been registered in our system. This could indicate that the product is NOT genuine or has been cloned. If you purchased this product from an authorised seller and believe this may be an error, please contact our support team immediately at info@dr-vapes.com. Your safety and trust are our top priorities. We're here to help."
+      );
+      setInputCount(data.input_count + 1);
+    } else {
+      setInputCount(data.input_count + 1);
+      setResponseMessage("Code is valid 🎉!");
+    }
   };
 
   return (
